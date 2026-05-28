@@ -1,0 +1,40 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ===== Ambiente virtual =====
+venv/
+env/
+.venv/
+ENV/
+
+# ===== Distribuição / build =====
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ===== IDEs e editores =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== Sistema operacional =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Jupyter =====
+.ipynb_checkpoints/
+
+# ===== Modelo MediaPipe (baixado via instrucoes do README) =====
+face_landmarker.task
+
+# ===== Arquivos de midia / saida (opcional) =====
+*.mp4
+*.avi
+gravacoes/
