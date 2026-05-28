@@ -1,6 +1,5 @@
 import numpy as np
-
-
+ 
 class EARFatigueDetector:
     """Detecta fadiga ocular via Eye Aspect Ratio (EAR)."""
 
@@ -11,8 +10,8 @@ class EARFatigueDetector:
         self.thresh = thresh
         self.consec_frames = consec_frames
         self.contador_olho = 0
-        self.episodios_fadiga = 0      # conta episodios completos de fadiga
-        self._em_fadiga = False        # estado interno para detectar a borda
+        self.episodios_fadiga = 0  # Conta episodios completos de fadiga
+        self._em_fadiga = False    # Estado interno para detectar a borda
 
     def _pega_pontos(self, lm, indices, w, h):
         return [np.array([lm[i].x * w, lm[i].y * h]) for i in indices]
@@ -36,7 +35,7 @@ class EARFatigueDetector:
         else:
             self.contador_olho = 0
 
-        # conta um episodio apenas na TRANSICAO de normal -> fadiga
+        # Conta um episodio apenas na TRANSICAO de normal -> fadiga
         if fadiga and not self._em_fadiga:
             self.episodios_fadiga += 1
         self._em_fadiga = fadiga

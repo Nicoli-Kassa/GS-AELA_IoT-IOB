@@ -2,13 +2,12 @@ import cv2
 import numpy as np
 import mediapipe as mp
 from mediapipe.tasks import python
-from mediapipe.tasks.python import vision
-
+from mediapipe.tasks.python import vision 
 from modules.ear_fatigue import EARFatigueDetector
 from modules.head_pose import HeadPoseDetector
 from modules.rppg_heartrate import RPPGHeartRate
 
-# ---------- Setup do FaceLandmarker (API tasks) ----------
+# ---------- Setup do FaceLandmarker ----------
 base_options = python.BaseOptions(model_asset_path='face_landmarker.task')
 
 options = vision.FaceLandmarkerOptions(
@@ -25,8 +24,8 @@ head_det = HeadPoseDetector(queda=0.15, normal=0.10)
 rppg_det = RPPGHeartRate(tamanho_janela=300)
 
 # ---------- Parametros ----------
-LIMITE_ALERTA = 3          # acima/igual a isto -> recomenda descanso
-LARGURA, ALTURA = 900, 600  # tamanho da janela
+LIMITE_ALERTA = 3           # Acima/igual a isto -> recomenda descanso
+LARGURA, ALTURA = 900, 600  # Tamanho da janela
 
 # ---------- Cores (BGR) ----------
 FONTE = cv2.FONT_HERSHEY_SIMPLEX
@@ -38,8 +37,8 @@ VERMELHO_STATUS = (80, 80, 240)
 BORDA = (200, 180, 120)
 FUNDO_PAINEL = (40, 30, 20)
 FUNDO_ALERTA = (20, 20, 90)
-
-
+ 
+# ---------- Painel ----------
 def painel(frame, x, y, titulo, subtitulo, label_valor, valor, status_ok):
     """Desenha um painel HUD semitransparente com titulo, valor e status."""
     largura, altura = 290, 92
@@ -60,7 +59,7 @@ def painel(frame, x, y, titulo, subtitulo, label_valor, valor, status_ok):
     cv2.putText(frame, texto_status, (x + largura - 95, y + 74),
                 FONTE, 0.55, cor_status, 2)
 
-
+# ---------- Alerta ----------
 def alerta_descanso(frame, w, nods, episodios, limite):
     """Faixa de alerta no topo, indicando o que disparou o aviso."""
     # monta a lista de causas que ultrapassaram o limite
@@ -91,7 +90,7 @@ while True:
         break
 
     frame = cv2.flip(frame, 1)
-    frame = cv2.resize(frame, (LARGURA, ALTURA))   # resize ANTES de processar
+    frame = cv2.resize(frame, (LARGURA, ALTURA))    
 
     rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb)

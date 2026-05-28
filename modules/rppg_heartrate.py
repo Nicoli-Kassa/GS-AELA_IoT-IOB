@@ -1,8 +1,6 @@
 import time
-from collections import deque
-
-import numpy as np
-
+from collections import deque 
+import numpy as np 
 
 class RPPGHeartRate:
     """
@@ -45,7 +43,7 @@ class RPPGHeartRate:
     def _estimar_bpm(self):
         """FFT do sinal verde para achar a frequencia dominante na banda valida."""
         sinal = np.array(self.sinal_verde, dtype=float)
-        sinal = sinal - np.mean(sinal)  # remove componente DC
+        sinal = sinal - np.mean(sinal)  # Remove componente DC
 
         duracao = self.tempos[-1] - self.tempos[0]
         if duracao <= 0:
@@ -67,7 +65,7 @@ class RPPGHeartRate:
     def update(self, lm, frame, w, h):
         roi, caixa = self._roi_testa(lm, frame, w, h)
         if roi is not None and roi.size > 0:
-            media_verde = float(np.mean(roi[:, :, 1]))  # canal G no BGR
+            media_verde = float(np.mean(roi[:, :, 1]))  # Canal G no BGR
             self.sinal_verde.append(media_verde)
             self.tempos.append(time.time())
 

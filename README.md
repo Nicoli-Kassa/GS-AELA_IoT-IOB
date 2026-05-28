@@ -121,8 +121,8 @@ Cada detector é uma **classe com estado próprio** que expõe um método `updat
 **1. Clone o repositório e entre na pasta:**
 
 ```bash
-git clone [PREENCHER: URL DO REPOSITÓRIO]
-cd GS_IoT&IOB
+git clone https://github.com/Nicoli-Kassa/GS-AELA_IoT-IOB.git
+cd GS-AELA_IoT-IOB
 ```
 
 **2. (Recomendado) crie um ambiente virtual:**
